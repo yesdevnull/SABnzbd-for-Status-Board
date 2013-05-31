@@ -21,6 +21,7 @@ $finalArray = array (
 );
 
 switch ( $graph ) {
+	/* !Categories */
 	case 'categories' :
 	
 		curl_setopt ( $ch , CURLOPT_URL , $baseSabServer . 'api?apikey=' . $sabnzbd['apikey'] . '&mode=queue&output=json' );
