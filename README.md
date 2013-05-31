@@ -25,5 +25,8 @@ Currently, the only graph available is a bar graph of current downloads.  When e
 ## Page
 In its current form, the server info page is only designed for a panel 4 blocks wide and 4 blocks high.  I plan on making it more responsive, however, at the present time it should be good enough (it's not like it's not readable in its current form).
 
+## Requirements
+This has been tested on OS X 10.8.3 with the XAMPP LAMP stack.  As long as you have PHP 5 and the curl extension you shouldn't have any problems with these scripts.
+
 ## TODO
 - Add support for username/password auth for SABnzbd+
