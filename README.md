@@ -19,7 +19,12 @@ $sabnzbd = array (
 
 This file should be stored in the same location as the other files for this code.  This file is __required__ to access your SABnzbd+ server's API.
 
+## Graphs
+Currently, the only graph available is a bar graph of current downloads.  When entering the URI for the Status Board panel, enter ```http://path/to/file/sabnzbd_graph?graph=categories```.
+
+## Page
+In its current form, the server info page is only designed for a panel 4 blocks wide and 4 blocks high.  I plan on making it more responsive, however, at the present time it should be good enough (it's not like it's not readable in its current form).
 
 ## TODO
-- [ ] Add support for username/password auth for SABnzbd+
-- [ ] Fix up colours for the categories graph
+- Add support for username/password auth for SABnzbd+
+- Fix up colours for the categories graph
