@@ -30,6 +30,8 @@ curl_setopt ( $ch , CURLOPT_URL , $baseSabServer . 'api?apikey=' . $sabnzbd['api
 
 $output = json_decode ( curl_exec ( $ch ) , true );
 
+curl_close ( $ch );
+
 $currentSpeed = formatSizeUnits ( $output['queue']['kbpersec'] * 1024 ) . '/s';
 $status = $output['queue']['status'];
 $sizeleft = $output['queue']['sizeleft'];
