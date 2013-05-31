@@ -38,7 +38,9 @@ switch ( $graph ) {
 		foreach ( $finalCats as $category => $total ) {
 			$downloads[] = array (
 				'title' => $category ,
-				'value' => $total
+				'datapoints' => array (
+					array ( 'title' => $category , 'value' => $total )
+				)
 			);
 		}
 		
@@ -46,12 +48,8 @@ switch ( $graph ) {
 		$finalArray['graph']['type'] = 'bar';
 		$finalArray['graph']['total'] = true ;
 		
-		$finalArray['graph']['datasequences'] = array (
-			array (
-				'title' => 'Categories' ,
-				'datapoints' => $downloads
-			)
-		);	
+		$finalArray['graph']['datasequences'] = $downloads;
+
 	break;
 }
 
