@@ -27,4 +27,3 @@ In its current form, the server info page is only designed for a panel 4 blocks 
 
 ## TODO
 - Add support for username/password auth for SABnzbd+
-- Fix up colours for the categories graph
