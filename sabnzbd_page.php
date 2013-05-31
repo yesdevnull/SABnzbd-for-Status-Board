@@ -61,7 +61,9 @@
 				
 		   	 	req.onreadystatechange = function() {
 			   	 	if ( req.readyState == 4 && req.status == 200 ) {
-	    				document.getElementById('howmany').innerText = req.responseText;
+	    				//document.getElementById('howmany').innerText = req.responseText;
+	    				
+	    				console.log( req.response );
 					}
 				}
 			    

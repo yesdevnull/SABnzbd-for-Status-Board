@@ -19,17 +19,14 @@ function formatSizeUnits ( $bytes ) {
 	return $bytes;
 }
 
-$protocol	= ( $_GET['ssl'] == 'true' ) ? 'https': 'http';
-$server		= $_GET['server'];
-$port		= $_GET['port'];
-$apikey		= $_GET['apikey'];
+require_once ( 'config.php' );
 
-$baseSabServer = $protocol . '://' . $server . ':' . $port . '/sabnzbd/';
+$baseSabServer = $sabnzbd['protocol'] . '://' . $sabnzbd['server'] . ':' . $sabnzbd['port'] . '/sabnzbd/';
 
 $ch = curl_init();
 curl_setopt ( $ch , CURLOPT_HEADER , 0 );
 curl_setopt ( $ch , CURLOPT_RETURNTRANSFER , true );
-curl_setopt ( $ch , CURLOPT_URL , $baseSabServer . 'api?apikey=' . $apikey . '&mode=queue&output=json' );
+curl_setopt ( $ch , CURLOPT_URL , $baseSabServer . 'api?apikey=' . $sabnzbd['apikey'] . '&mode=queue&output=json' );
 
 $output = json_decode ( curl_exec ( $ch ) , true );
 //echo '<pre>';
