@@ -1,13 +1,13 @@
 <?php
 
 // From: http://stackoverflow.com/a/5501447
-function formatSizeUnits ( $bytes ) {
+function formatSizeUnits ( $bytes , $rounding = 0 ) {	
 	if ( $bytes >= 1073741824 ) {
-		$bytes = number_format ( $bytes / 1073741824 , 2 ) . ' GB';
+		$bytes = number_format ( $bytes / 1073741824 , $rounding ) . ' GB';
 	} elseif ( $bytes >= 1048576 ) {
-		$bytes = number_format ( $bytes / 1048576 , 2 ) . ' MB';
+		$bytes = number_format ( $bytes / 1048576 , $rounding ) . ' MB';
 	} elseif ( $bytes >= 1024 ) {
-		$bytes = number_format ( $bytes / 1024 , 2 ) . ' KB';
+		$bytes = number_format ( $bytes / 1024 , $rounding ) . ' KB';
 	} elseif ( $bytes > 1 ) {
 		$bytes = $bytes . ' B';
 	} elseif ( $bytes == 1 ) {
