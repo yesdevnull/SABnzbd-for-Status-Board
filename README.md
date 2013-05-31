@@ -10,13 +10,16 @@ The first and most important part of this is to make sure you first make a file 
 <?php
 
 $sabnzbd = array (
-	'protocol' => 'http' ,
-	'server' => '192.168.1.x' ,
-	'port' => '8080' ,
-	'apikey' => 'your api key here'
+	'protocol' => 'http' , // Change this to https if you use it
+	'server' => '192.168.1.x' , // Change this to the IP of your SABnzbd+ server
+	'port' => '8080' , // Change this to the port of your SABnzbd+ server
+	'apikey' => 'your api key here' // Put your SABNzbd+ API key here (not NZB key)
 );
 ```
 
 This file should be stored in the same location as the other files for this code.  This file is __required__ to access your SABnzbd+ server's API.
 
 
+## TODO
+- [ ] Add support for username/password auth for SABnzbd+
+- [ ] Fix up colours for the categories graph
