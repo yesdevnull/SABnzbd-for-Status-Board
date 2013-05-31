@@ -1,11 +1,8 @@
 <?php
 
-$protocol	= ( $_GET['ssl'] == 'true' ) ? 'https': 'http';
-$server		= $_GET['server'];
-$port		= $_GET['port'];
-$apikey		= $_GET['apikey'];
+require_once ( 'config.php' );
 
-$baseSabServer = $protocol . '://' . $server . ':' . $port . '/sabnzbd/';
+$baseSabServer = $sabnzbd['protocol'] . '://' . $sabnzbd['server'] . ':' . $sabnzbd['port'] . '/sabnzbd/';
 
 $graph = $_GET['graph'];
 
@@ -26,7 +23,7 @@ $finalArray = array (
 switch ( $graph ) {
 	case 'categories' :
 	
-		curl_setopt ( $ch , CURLOPT_URL , $baseSabServer . 'api?apikey=' . $apikey . '&mode=queue&output=json' );
+		curl_setopt ( $ch , CURLOPT_URL , $baseSabServer . 'api?apikey=' . $sabnzbd['apikey'] . '&mode=queue&output=json' );
 		
 		$queue = json_decode ( curl_exec ( $ch ) , true );
 		
