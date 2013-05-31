@@ -1,69 +1,94 @@
-<?php
-
-// From: http://stackoverflow.com/a/5501447
-function formatSizeUnits ( $bytes ) {
-	if ( $bytes >= 1073741824 ) {
-		$bytes = number_format ( $bytes / 1073741824 , 2 ) . ' GB';
-	} elseif ( $bytes >= 1048576 ) {
-		$bytes = number_format ( $bytes / 1048576 , 2 ) . ' MB';
-	} elseif ( $bytes >= 1024 ) {
-		$bytes = number_format ( $bytes / 1024 , 2 ) . ' KB';
-	} elseif ( $bytes > 1 ) {
-		$bytes = $bytes . ' B';
-	} elseif ( $bytes == 1 ) {
-		$bytes = $bytes . ' B';
-	} else {
-		$bytes = 0 . ' B';
-	}
-
-	return $bytes;
-}
-
-$protocol	= ( $_GET['ssl'] == 'true' ) ? 'https': 'http';
-$server		= $_GET['server'];
-$port		= $_GET['port'];
-$apikey		= $_GET['apikey'];
-
-$baseSabServer = $protocol . '://' . $server . ':' . $port . '/sabnzbd/';
-
-//$queue = $baseSabServer. 'api?apikey=' . $apikey . '&mode=queue&output=json';
-
-$ch = curl_init();
-curl_setopt ( $ch , CURLOPT_HEADER , 0 );
-curl_setopt ( $ch , CURLOPT_RETURNTRANSFER , true );
-curl_setopt ( $ch , CURLOPT_URL , $baseSabServer . 'api?apikey=' . $apikey . '&mode=queue&output=json' );
-
-$output = json_decode ( curl_exec ( $ch ) , true );
-//echo '<pre>';
-//var_dump($output);
-
-$currentSpeed = $output['queue']['kbpersec'] * 1024;
-
-//echo $currentSpeed * 1024;
-$status = $output['queue']['status'];
-$sizeleft = $output['queue']['sizeleft'];
-
-?><!DOCTYPE html>
+<!DOCTYPE html>
 
 	<html lang="en">
 
 		<head>
 
 			<meta charset="UTF-8">
+			
+			<style type="text/css">
+				
+				body, * {
+					font-family: "Roadgeek 2005 Series C";
+				}
+				
+				body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { 
+					margin: 0;
+					padding: 0;
+				}
+					
+				fieldset,img { 
+					border: 0;
+				}
+				
+					
+				/* Settin' up the page */
+				
+				html, body, #main {
+					overflow: hidden; /* */
+					text-align: center;
+					vertical-align: middle;
+				}
+				
+				.current-speed {
+					font-size: 16px;
+				}
+				
+				.status {
+					padding: 20px;
+					background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(73,73,73,1)), color-stop(100%,rgba(255,255,255,0)));
+/*
+					background: #000;
+					border-top: 1px solid rgb( 100 , 112 , 118 );
+*/
+				}
+				
+				.status-downloading {
+					color: rgb( 0 , 186 , 0 );
+				}
+				
+				.status-paused {
+					color: rgb( 255 , 198 , 0 );
+				}
+			
+			</style>
+			
+			<script type="text/javascript">
+	
+			function refresh() {
+			    var req = new XMLHttpRequest();
+		   	 	console.log("Refreshing Count...");
+				
+		   	 	req.onreadystatechange = function() {
+			   	 	if ( req.readyState == 4 && req.status == 200 ) {
+	    				document.getElementById('howmany').innerText = req.responseText;
+					}
+				}
+			    
+			    req.open("GET", 'sabnzbd_helper.php', true);
+			    req.send(null);
+			}
+	
+			function init() {
+				refresh()
+				var int = self.setInterval(function(){refresh()},300000);
+			}
+	
+			</script>
 
 		</head>
 
-		<body>
+		<body onload="init()">
 		
 			<div id="main">
 			
 				<ul>
 				
-					<li class="current-speed"><?php echo formatSizeUnits ( $currentSpeed ); ?>/s</li>
+					<li id="current-speed">0 KB/s</li>
 					
-					<li class="status"><?php echo $status; ?></li>
+					<li id="status status-<?php echo strtolower( $status );?>">Idle</li>
 					
-					<li class="sizeleft"><?php echo $sizeleft; ?></li>
+					<li id="sizeleft">0 GB</li>
 				
 				</ul>
 			
