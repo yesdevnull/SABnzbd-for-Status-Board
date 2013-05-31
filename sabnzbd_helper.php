@@ -35,11 +35,13 @@ $output = json_decode ( curl_exec ( $ch ) , true );
 $currentSpeed = formatSizeUnits ( $output['queue']['kbpersec'] * 1024 ) . '/s';
 $status = $output['queue']['status'];
 $sizeleft = $output['queue']['sizeleft'];
+$version = $output['queue']['version'];
 
 $finalArray = array (
 	'current-speed' => $currentSpeed ,
 	'status' => $status ,
-	'sizeleft' => $sizeleft
+	'sizeleft' => $sizeleft ,
+	'version' => $version
 );
 
 header ( 'content-type: application/json' );
