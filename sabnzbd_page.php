@@ -20,7 +20,6 @@
 				fieldset,img { 
 					border: 0;
 				}
-				
 					
 				/* Settin' up the page */
 				
@@ -55,31 +54,30 @@
 			
 			<script type="text/javascript">
 	
-			function refresh() {
-			    var req = new XMLHttpRequest();
-		   	 	console.log("Refreshing Count...");
-				
-		   	 	req.onreadystatechange = function() {
-			   	 	if ( req.readyState == 4 && req.status == 200 ) {
-	    				json = JSON.parse(req.responseText);
-	    				//document.getElementById('howmany').innerText = req.responseText;
-	    				
-	    				document.getElementById('current-speed').innerText = json['current-speed'];
-	    				document.getElementById('status').innerText = json['status'];
-	    				document.getElementById('sizeleft').innerText = json['sizeleft'];
-	    				
-	    				//console.log( json['current-speed'] );
+				function refresh() {
+				    var req = new XMLHttpRequest();
+			   	 	console.log("Refreshing Script...");
+					
+			   	 	req.onreadystatechange = function() {
+				   	 	if ( req.readyState == 4 && req.status == 200 ) {
+		    				json = JSON.parse(req.responseText);
+							
+							// Grab our juicy data from the JSON array and feed it into the values below
+		    				document.getElementById('current-speed').innerText = json['current-speed'];
+		    				document.getElementById('status').innerText = json['status'];
+		    				document.getElementById('status').className = json['status'].toLowerCase();
+		    				document.getElementById('sizeleft').innerText = json['sizeleft'];
+						}
 					}
+				    
+				    req.open("GET", 'sabnzbd_helper.php', true);
+				    req.send(null);
 				}
-			    
-			    req.open("GET", 'sabnzbd_helper.php', true);
-			    req.send(null);
-			}
-	
-			function init() {
-				refresh()
-				var int = self.setInterval(function(){refresh()},5000);
-			}
+		
+				function init() {
+					refresh()
+					var int = self.setInterval(function(){refresh()},5000);
+				}
 	
 			</script>
 
