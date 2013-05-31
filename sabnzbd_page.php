@@ -61,9 +61,14 @@
 				
 		   	 	req.onreadystatechange = function() {
 			   	 	if ( req.readyState == 4 && req.status == 200 ) {
+	    				json = JSON.parse(req.responseText);
 	    				//document.getElementById('howmany').innerText = req.responseText;
 	    				
-	    				console.log( req.response );
+	    				document.getElementById('current-speed').innerText = json['current-speed'];
+	    				document.getElementById('status').innerText = json['status'];
+	    				document.getElementById('sizeleft').innerText = json['sizeleft'];
+	    				
+	    				//console.log( json['current-speed'] );
 					}
 				}
 			    
@@ -73,7 +78,7 @@
 	
 			function init() {
 				refresh()
-				var int = self.setInterval(function(){refresh()},300000);
+				var int = self.setInterval(function(){refresh()},5000);
 			}
 	
 			</script>
@@ -88,7 +93,7 @@
 				
 					<li id="current-speed">0 KB/s</li>
 					
-					<li id="status status-<?php echo strtolower( $status );?>">Idle</li>
+					<li id="status">Idle</li>
 					
 					<li id="sizeleft">0 GB</li>
 				
