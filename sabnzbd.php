@@ -13,7 +13,15 @@ $ch = curl_init();
 curl_setopt ( $ch , CURLOPT_HEADER , 0 );
 curl_setopt ( $ch , CURLOPT_RETURNTRANSFER , true );
 
-echo '<pre>';
+$finalArray = array (
+	'graph' => array (
+		'title' => '' ,
+		'type' => '' ,
+		'total' => '' ,
+		'refreshEveryNSeconds' => '60' ,
+		'datasequences' => '' ,
+	)
+);
 
 switch ( $graph ) {
 	case 'categories' :
@@ -22,20 +30,29 @@ switch ( $graph ) {
 		
 		$queue = json_decode ( curl_exec ( $ch ) , true );
 		
-		$totalJobs = count ( $queue['jobs'] );
-		
 		foreach ( $queue['queue']['slots'] as $job ) {
 			$cats[] = $job['cat'];
 		}
 		
 		$finalCats = array_count_values ( $cats );
 		
-		//$cats = array_count_values ( $queue['slots'] );
+		foreach ( $finalCats as $category => $total ) {
+			$downloads[] = array (
+				'title' => $category ,
+				'value' => $total
+			);
+		}
 		
-		var_dump($finalCats);
+		$finalArray['graph']['title'] = 'Downloads by Category';
+		$finalArray['graph']['type'] = 'bar';
+		$finalArray['graph']['total'] = true ;
 		
-		//var_dump($queue);
-	
+		$finalArray['graph']['datasequences'] = array (
+			array (
+				'title' => 'Categories' ,
+				'datapoints' => $downloads
+			)
+		);	
 	break;
 }
 
