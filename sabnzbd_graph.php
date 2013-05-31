@@ -30,6 +30,8 @@ switch ( $graph ) {
 		
 		$queue = json_decode ( curl_exec ( $ch ) , true );
 		
+		curl_close ( $ch );
+		
 		foreach ( $queue['queue']['slots'] as $job ) {
 			$cats[] = $job['cat'];
 		}
