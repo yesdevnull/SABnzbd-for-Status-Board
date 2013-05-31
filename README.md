@@ -2,7 +2,7 @@
 This is a collection of graphs and info panels for your SABNzbd+ server that can be displayed in [Status Board](http://panic.com/statusboard/).
 
 ## Usage
-There are two major compotents to this Status Board script.  The first section is a graph of current downloads sorted by category.  The second component is basic details of SABnzbd+ at the current point in time (i.e. download speed, GBs remaining to download).
+There are two major components to this Status Board script.  The first section is a graph of current downloads sorted by category.  The second component is basic details of SABnzbd+ at the current point in time (i.e. download speed, GBs remaining to download).
 
 The first and most important part of this is to make sure you first make a file called config.php that has your SABnzbd+ server details in it.  For example:
 
@@ -24,6 +24,8 @@ Currently, the only graph available is a bar graph of current downloads.  When e
 
 ## Page
 In its current form, the server info page is only designed for a panel 4 blocks wide and 4 blocks high.  I plan on making it more responsive, however, at the present time it should be good enough (it's not like it's not readable in its current form).
+
+The code for getting the page panel is ```http://path/to/file/sabnzbd_page.html```
 
 ## Requirements
 This has been tested on OS X 10.8.3 with the XAMPP LAMP stack.  As long as you have PHP 5 and the curl extension you shouldn't have any problems with these scripts.
