@@ -75,7 +75,7 @@ switch ( $graph ) {
 		
 		$sql = 'SELECT
 					time ,
-					download_speed ,
+					download_speed
 				FROM
 					stats
 				ASC
