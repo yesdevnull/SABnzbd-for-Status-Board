@@ -70,3 +70,9 @@ $stmt->bindParam( ':size_left' , $sizeLeft );
 $stmt->bindParam( ':total_downloads' , $totalDownloads );
 
 $stmt->execute();
+
+echo 'Current Time: ' . date ( 'H:i e' , $currentTime ) . "\n";
+echo 'Current Speed: ' . $currentSpeed . "\n";
+echo 'Size Left: ' . $sizeLeft . "\n";
+echo 'Speed Limit: ' . $speedlimit . "\n";
+echo 'Total Downloads: ' . $totalDownloads . "\n";
