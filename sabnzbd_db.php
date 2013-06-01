@@ -69,7 +69,11 @@ $stmt->bindParam( ':speedlimit' , $speedlimit );
 $stmt->bindParam( ':size_left' , $sizeLeft );
 $stmt->bindParam( ':total_downloads' , $totalDownloads );
 
-$stmt->execute();
+try {
+	$stmt->execute();
+} catch ( PDOException $e ) {
+	echo 'Error: ' . $e->getMessage(). ' (' . $e->getCode() . ')';
+}
 
 echo 'Current Time: ' . date ( 'H:i e' , $currentTime ) . "\n";
 echo 'Current Speed: ' . $currentSpeed . "\n";
