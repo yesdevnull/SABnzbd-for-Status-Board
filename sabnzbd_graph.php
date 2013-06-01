@@ -96,13 +96,13 @@ switch ( $graph ) {
 		
 		$finalArray['graph']['datasequences'] = array (
 			array (
+				'title' => 'Speed Limit' ,
+				'datapoints' => $speedlimit ,
+			) ,
+			array (
 				'title' => 'Download Speed' ,
 				'datapoints' => $downloadSpeed ,
 			) ,
-			array (
-				'title' => 'Speedlimit' ,
-				'datapoints' => $speedlimit ,
-			)
 		);
 	
 	break;
