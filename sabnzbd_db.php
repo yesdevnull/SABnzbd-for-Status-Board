@@ -1,5 +1,7 @@
 <?php
 
+set_include_path ( '.' );
+
 // From: http://stackoverflow.com/a/5501447
 function formatSizeUnits ( $bytes , $rounding = 0 ) {	
 	if ( $bytes >= 1073741824 ) {
