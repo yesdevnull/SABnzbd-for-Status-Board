@@ -35,7 +35,6 @@ to make sure the folder is writeable.  If you get SQLite errors after the ```sab
 to edit your crontab.  Enter in
 ```*/5 * * * * ( /path/to/php /path/to/sabnzbd_db.php )```
 This ensures that the database scraping script is run every 5 minutes.
-
 **Note** If you wish to change how often the script is run, feel free to change any of the values in the crontab.
 3. Finally, enter ```http://path/to/sabnzbd_graph?graph=download-speed``` in Status Board to get the graph.
 

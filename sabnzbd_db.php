@@ -66,7 +66,23 @@ $speedlimit = (string) $queue['queue']['speedlimit'];
 $totalDownloads = (int) count ( $queue['queue']['slots'] );
 
 // Prepare and Bind!
-$stmt = $db->prepare( 'INSERT INTO stats ( time, download_speed, speedlimit, size_left, total_downloads ) VALUES ( :time, :download_speed, :speedlimit, :size_left, :total_downloads )' );
+$stmt = $db->prepare( 'INSERT INTO
+						stats
+							(
+								time ,
+								download_speed ,
+								speedlimit ,
+								size_left ,
+								total_downloads
+							)
+					   VALUES
+					   		(
+					   			:time ,
+					   			:download_speed ,
+					   			:speedlimit ,
+					   			:size_left ,
+					   			:total_downloads
+					   		)' );
 
 $stmt->bindParam( ':time' , $currentTime );
 $stmt->bindParam( ':download_speed' , $currentSpeed );
