@@ -51,8 +51,6 @@ if ( curl_errno ( $ch ) == 7 ) {
 	// SABnzbd+ server is down
 	exit;
 }
-// echo '<pre>';
-// var_dump($queue);
 
 curl_close ( $ch );
 
@@ -60,10 +58,6 @@ $currentTime = time();
 $currentSpeed = (string) formatSizeUnits ( $queue['queue']['kbpersec'] * 1024 );
 $sizeLeft = (string) $queue['queue']['sizeleft'];
 $totalDownloads = (int) count ( $queue['queue']['slots'] );
-
-// echo 'Current Speed: ' . $currentSpeed . "\n";
-// echo 'Size Left: ' . $sizeLeft . "\n";
-// echo 'Total Downloads: ' . $totalDownloads . "\n";
 
 $stmt = $db->prepare( 'INSERT INTO stats ( time, download_speed, size_left, total_downloads ) VALUES ( :time, :download_speed, :size_left, :total_downloads )' );
 

@@ -65,6 +65,53 @@ switch ( $graph ) {
 		$finalArray['graph']['datasequences'] = $downloads;
 
 	break;
+	
+	case 'downloads' :
+		
+		$finalArray['graph']['title'] = 'Downloads';
+		$finalArray['graph']['type'] = 'line';
+	
+		$db = new PDO ( 'sabnzbd_history.db' );
+		
+		$sql = 'SELECT
+					time ,
+					download_speed ,
+					size_left ,
+					total_downloads
+				FROM
+					stats
+				ASC
+				LIMIT
+					20';
+		
+		$stmt = $db->prepare ( $sql );
+		
+		$stmt->execute();
+		
+		foreach ( $stmt->fetchAll() as $row ) {
+			$time = date ( 'H:i' , $row['time'] );
+			
+			$downloadSpeed[] = array ( 'title' => $time , 'value' => $row['download_speed'] );
+			$sizeLeft[] = array ( 'title' => $time , 'value' => $row['size_left'] );
+			$totalDownloads[] = array ( 'title' => $time , 'value' => $row['totalDownloads'] );
+		}
+		
+		$finalArray['graph']['datasequences'] = array (
+			array (
+				'title' => 'Download Speed' ,
+				'datapoints' => $downloadSpeed ,
+			) ,
+			array (
+				'title' => 'Size Left' ,
+				'datapoints' => $sizeLeft ,
+			) ,
+			array (
+				'title' => 'Total Downloads' ,
+				'datapoints' => $totalDownloads ,
+			)
+		);
+	
+	break;
 }
 
 header ( 'content-type: application/json' );
