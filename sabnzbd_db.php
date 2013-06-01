@@ -21,7 +21,7 @@ function formatSizeUnits ( $bytes , $rounding = 0 ) {
 
 new SQLite3 ( 'sabnzbd_history.db' );
 
-$db = new PDO ( 'sabnzbd_history.db' );
+$db = new PDO ( 'sqlite:sabnzbd_history.db' );
 
 $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 
