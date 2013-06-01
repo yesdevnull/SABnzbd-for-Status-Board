@@ -20,7 +20,13 @@ $sabnzbd = array (
 This file should be stored in the same location as the other files for this code.  This file is __required__ to access your SABnzbd+ server's API.
 
 ## Graphs
-Currently, the only graph available is a bar graph of current downloads.  When entering the URI for the Status Board panel, enter ```http://path/to/file/sabnzbd_graph?graph=categories```.
+### Current Downloads For Each Category (Bar)
+When entering the URI for the Status Board panel, enter ```http://path/to/file/sabnzbd_graph?graph=categories```.
+
+### Download Speed and Speedlimit (Line) - Advanced
+This graph is the current download speed, along with the speedlimit (if set).  To get this working properly, you should have a decent knowledge of the command line as you __have__ to have correct permissions to make sure SQLite can work properly, along with setting up a cron task for data collection.
+
+Once you've cloned/downloaded these files, add your config file then run ```chmod 775 .``` to make sure the folder is writeable.  If you get SQLite errors after the ```sabnzbd_history.db``` database has been generated, you may have to run ```chmod 775 sabnzbd_history.db```.  Once you've done that, type ```crontab -e``` to edit your crontab.  Enter in ```*/5 * * * * ( /path/to/php /path/to/sabnzbd_db.php )```.  This ensures that the database scraping script is run every 5 minutes.  If you wish to change how often the script is run, feel free to change any of the values in the crontab.
 
 ## Page
 In its current form, the server info page is only designed for a panel 4 blocks wide and 4 blocks high.  I plan on making it more responsive, however, at the present time it should be good enough (it's not like it's not readable in its current form).
