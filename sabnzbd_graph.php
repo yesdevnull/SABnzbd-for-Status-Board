@@ -34,6 +34,7 @@ switch ( $graph ) {
 		
 		curl_close ( $ch );
 		
+		// Quick check to see if the queue is empty
 		if ( count ( $queue['queue']['slots'] ) == 0 ) {
 			$downloads[] = array (
 				'title' => 'Downloads' ,
