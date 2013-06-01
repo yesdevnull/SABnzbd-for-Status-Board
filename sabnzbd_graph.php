@@ -68,14 +68,15 @@ switch ( $graph ) {
 	
 	case 'download-speed' :
 		
-		$finalArray['graph']['title'] = 'Download Speed';
+		$finalArray['graph']['title'] = 'Downloads';
 		$finalArray['graph']['type'] = 'line';
 	
 		$db = new PDO ( 'sqlite:sabnzbd_history.db' );
 		
 		$sql = 'SELECT
 					time ,
-					download_speed
+					download_speed ,
+					speedlimit
 				FROM
 					stats
 				ASC
@@ -90,6 +91,7 @@ switch ( $graph ) {
 			$time = date ( 'H:i' , $row['time'] );
 			
 			$downloadSpeed[] = array ( 'title' => $time , 'value' => $row['download_speed'] );
+			$speedlimit[] = array ( 'title' => $time , 'value' => $row['speedlimit'] );
 		}
 		
 		$finalArray['graph']['datasequences'] = array (
@@ -97,6 +99,10 @@ switch ( $graph ) {
 				'title' => 'Download Speed' ,
 				'datapoints' => $downloadSpeed ,
 			) ,
+			array (
+				'title' => 'Speedlimit' ,
+				'datapoints' => $speedlimit ,
+			)
 		);
 	
 	break;

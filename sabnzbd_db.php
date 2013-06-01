@@ -29,6 +29,7 @@ $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 $createHistoryTable = 'CREATE TABLE IF NOT EXISTS stats (
 						time INTEGER NOT NULL , 
 						download_speed REAL NOT NULL ,
+						speedlimit REAL NOT NULL ,
 						size_left TEXT NOT NULL,
 						total_downloads INTEGER NOT NULL
 					)';
@@ -57,12 +58,14 @@ curl_close ( $ch );
 $currentTime = time();
 $currentSpeed = (string) formatSizeUnits ( $queue['queue']['kbpersec'] * 1024 );
 $sizeLeft = (string) $queue['queue']['sizeleft'];
+$speedlimit = (string) $queue['queue']['speedlimit'];
 $totalDownloads = (int) count ( $queue['queue']['slots'] );
 
-$stmt = $db->prepare( 'INSERT INTO stats ( time, download_speed, size_left, total_downloads ) VALUES ( :time, :download_speed, :size_left, :total_downloads )' );
+$stmt = $db->prepare( 'INSERT INTO stats ( time, download_speed, speedlimit, size_left, total_downloads ) VALUES ( :time, :download_speed, :speedlimit, :size_left, :total_downloads )' );
 
 $stmt->bindParam( ':time' , $currentTime );
 $stmt->bindParam( ':download_speed' , $currentSpeed );
+$stmt->bindParam( ':speedlimit' , $speedlimit );
 $stmt->bindParam( ':size_left' , $sizeLeft );
 $stmt->bindParam( ':total_downloads' , $totalDownloads );
 
