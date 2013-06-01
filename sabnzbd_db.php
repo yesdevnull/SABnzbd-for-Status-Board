@@ -27,10 +27,10 @@ $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 
 // Build up our table if it doesn't exist
 $createHistoryTable = 'CREATE TABLE IF NOT EXISTS stats (
-						time INTEGER NOT NULL , 
-						download_speed REAL NOT NULL ,
-						size_left TEXT NOT NULL ,
-						total_downloads INTEGER NOT NULL
+						time INTEGER NOT NULL ON CONFLICT FAIL , 
+						download_speed REAL NOT NULL ON CONFLICT FAIL,
+						size_left TEXT NOT NULL ON CONFLICT FAIL,
+						total_downloads INTEGER NOT NULL ON CONFLICT FAIL
 					)';
 
 $db->exec ( $createHistoryTable );
