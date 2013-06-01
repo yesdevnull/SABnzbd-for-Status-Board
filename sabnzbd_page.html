@@ -47,8 +47,8 @@
 					padding: 0;
 				}
 				
-				#title span {
-					color: rgb( 85 , 85 , 85 );
+				span {
+					color: inherit;
 				}
 				
 				p {
@@ -73,6 +73,11 @@
 				.status-idle {
 					color: rgb( 0 , 108 , 230 );
 				}
+				
+				.status-offline ,
+				#title.status-offline {
+					color: rgb( 255 , 48 , 0 );
+				}
 			
 			</style>
 			
@@ -90,13 +95,18 @@
 		    				document.getElementById('current-speed').innerText = json['current-speed'];
 		    				document.getElementById('status').innerText = json['status'];
 		    				document.getElementById('status').className = 'status-' + json['status'].toLowerCase();
+		    				if ( json['status'] == 'Offline' ) {
+			    				document.getElementById('title').className = 'status-' + json['status'].toLowerCase();
+		    				} else {
+			    				document.getElementById('title').className = '';
+		    				}
 		    				document.getElementById('sizeleft').innerText = json['sizeleft'];
 		    				document.getElementById('version').innerText = json['version'];
 						}
 					}
 				    
 				    req.open("GET", 'sabnzbd_helper.php', true);
-				    req.send(null);
+				    req.send( null );
 				}
 		
 				function init() {
