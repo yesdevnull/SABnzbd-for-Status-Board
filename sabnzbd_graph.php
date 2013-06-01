@@ -71,7 +71,7 @@ switch ( $graph ) {
 		$finalArray['graph']['title'] = 'Downloads';
 		$finalArray['graph']['type'] = 'line';
 	
-		$db = new PDO ( 'sabnzbd_history.db' );
+		$db = new PDO ( 'sqlite:sabnzbd_history.db' );
 		
 		$sql = 'SELECT
 					time ,
