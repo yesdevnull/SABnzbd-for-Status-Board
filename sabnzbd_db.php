@@ -27,10 +27,10 @@ $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 
 // Build up our table if it doesn't exist
 $createHistoryTable = 'CREATE TABLE IF NOT EXISTS stats (
-						time INTEGER , 
-						download_speed REAL ,
-						size_left TEXT ,
-						total_downloads INTEGER
+						time INTEGER NOT NULL , 
+						download_speed REAL NOT NULL ,
+						size_left TEXT NOT NULL,
+						total_downloads INTEGER NOT NULL
 					)';
 
 $db->exec ( $createHistoryTable );
@@ -55,9 +55,9 @@ if ( curl_errno ( $ch ) == 7 ) {
 curl_close ( $ch );
 
 $currentTime = time();
-$currentSpeed = formatSizeUnits ( $queue['queue']['kbpersec'] * 1024 );
-$sizeleft = $queue['queue']['sizeleft'];
-$totalDownloads = count ( $queue['queue']['slots'] );
+$currentSpeed = (string) formatSizeUnits ( $queue['queue']['kbpersec'] * 1024 );
+$sizeleft = (string) $queue['queue']['sizeleft'];
+$totalDownloads = (int) count ( $queue['queue']['slots'] );
 
 var_dump($currentSpeed,$sizeLeft,$totalDownloads);
 
