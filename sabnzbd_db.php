@@ -19,7 +19,6 @@ function formatSizeUnits ( $bytes , $rounding = 0 ) {
 	return $bytes;
 }
 
-
 $db = new SQLite3 ( 'sabnzbd_history.db' );
 
 // Bring in our SABnzbd+ config details
@@ -41,3 +40,18 @@ if ( curl_errno ( $ch ) == 7 ) {
 
 curl_close ( $ch );
 
+$currentTime = time();
+$currentSpeed = formatSizeUnits ( $queue['queue']['kbpersec'] * 1024 );
+$sizeleft = $queue['queue']['sizeleft'];
+$totalDownloads = count ( $queue['queue']['slots'] );
+
+var_dump($currentSpeed,$sizeLeft,$totalDownloads);
+
+$stmt = $db->prepare( 'INSERT INTO stats ( time, download_speed, size_left, total_downloads ) VALUES ( :time, :download_speed, :size_left, :total_downloads )' );
+
+$stmt->bindParam( ':time' , $currentTime );
+$stmt->bindParam( ':download_speed' , $currentSpeed );
+$stmt->bindParam( ':size_left' , $sizeLeft );
+$stmt->bindParam( ':total_downloads' , $totalDownloads );
+
+$stmt->execute();
