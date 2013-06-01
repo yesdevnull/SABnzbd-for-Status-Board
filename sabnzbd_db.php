@@ -19,7 +19,11 @@ function formatSizeUnits ( $bytes , $rounding = 0 ) {
 	return $bytes;
 }
 
-$db = new SQLite3 ( 'sabnzbd_history.db' );
+new SQLite3 ( 'sabnzbd_history.db' );
+
+$db = new PDO ( 'sabnzbd_history.db' );
+
+$db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 
 // Build up our table if it doesn't exist
 $createHistoryTable = 'CREATE TABLE IF NOT EXISTS stats (
