@@ -30,19 +30,30 @@ curl_setopt ( $ch , CURLOPT_URL , $baseSabServer . 'api?apikey=' . $sabnzbd['api
 
 $output = json_decode ( curl_exec ( $ch ) , true );
 
+if ( curl_errno ( $ch ) == 7 ) {
+	// SABnzbd+ server is down
+	
+	$finalArray = array (
+		'current-speed' => '0 KB/s' ,
+		'status' => 'Offline' ,
+		'sizeleft' => '0 B' ,
+		'version' => 'Offline'
+	);
+} else {
+	$currentSpeed = formatSizeUnits ( $output['queue']['kbpersec'] * 1024 ) . '/s';
+	$status = $output['queue']['status'];
+	$sizeleft = $output['queue']['sizeleft'];
+	$version = $output['queue']['version'];
+	
+	$finalArray = array (
+		'current-speed' => $currentSpeed ,
+		'status' => $status ,
+		'sizeleft' => $sizeleft ,
+		'version' => $version
+	);
+}
+
 curl_close ( $ch );
-
-$currentSpeed = formatSizeUnits ( $output['queue']['kbpersec'] * 1024 ) . '/s';
-$status = $output['queue']['status'];
-$sizeleft = $output['queue']['sizeleft'];
-$version = $output['queue']['version'];
-
-$finalArray = array (
-	'current-speed' => $currentSpeed ,
-	'status' => $status ,
-	'sizeleft' => $sizeleft ,
-	'version' => $version
-);
 
 header ( 'content-type: application/json' );
 
