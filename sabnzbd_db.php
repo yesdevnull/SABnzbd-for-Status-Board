@@ -71,6 +71,7 @@ $stmt->bindParam( ':total_downloads' , $totalDownloads );
 
 try {
 	$stmt->execute();
+	echo 'Data Insert Successful!' . "\n";
 } catch ( PDOException $e ) {
 	echo 'Error: ' . $e->getMessage(). ' (' . $e->getCode() . ')';
 }
