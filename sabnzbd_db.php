@@ -1,7 +1,5 @@
 <?php
 
-set_include_path ( '.' );
-
 // From: http://stackoverflow.com/a/5501447
 function formatSizeUnits ( $bytes , $rounding = 0 ) {	
 	if ( $bytes >= 1073741824 ) {
@@ -22,6 +20,16 @@ function formatSizeUnits ( $bytes , $rounding = 0 ) {
 }
 
 $db = new SQLite3 ( 'sabnzbd_history.db' );
+
+// Build up our table if it doesn't exist
+$createHistoryTable = 'CREATE TABLE IF NOT EXISTS stats (
+						time INTEGER NOT NULL , 
+						download_speed REAL NOT NULL ,
+						size_left TEXT NOT NULL ,
+						total_downloads INTEGER NOT NULL
+					)';
+
+$db->exec ( $createHistoryTable );
 
 // Bring in our SABnzbd+ config details
 require_once ( 'config.php' );
