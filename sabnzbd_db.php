@@ -60,7 +60,7 @@ curl_close ( $ch );
 
 // Build up our data vars from the SABnzbd+ Queue API
 $currentTime = time();
-$currentSpeed = (string) $queue['queue']['kbpersec'] * 1024;
+$currentSpeed = (string) $queue['queue']['kbpersec'];
 $sizeLeft = (string) $queue['queue']['sizeleft'];
 $speedlimit = (string) $queue['queue']['speedlimit'];
 $totalDownloads = (int) count ( $queue['queue']['slots'] );
