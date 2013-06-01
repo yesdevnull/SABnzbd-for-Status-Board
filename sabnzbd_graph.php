@@ -32,9 +32,6 @@ switch ( $graph ) {
 		
 		$queue = json_decode ( curl_exec ( $ch ) , true );
 		
-		echo '<pre>';
-		var_dump($queue);
-		
 		curl_close ( $ch );
 		
 		// Quick check to see if the queue is empty
