@@ -4,7 +4,7 @@ require_once ( 'config.php' );
 
 $baseSabServer = $sabnzbd['protocol'] . '://' . $sabnzbd['server'] . ':' . $sabnzbd['port'] . '/sabnzbd/';
 
-$graph = $_GET['graph'];
+$graph = filter_input ( INPUT_GET , 'graph' , FILTER_SANITIZE_STRING );
 
 $ch = curl_init();
 curl_setopt ( $ch , CURLOPT_HEADER , 0 );
@@ -23,6 +23,10 @@ $finalArray = array (
 switch ( $graph ) {
 	/* !Categories */
 	case 'categories' :
+		
+		$finalArray['graph']['title'] = 'Downloads by Category';
+		$finalArray['graph']['type'] = 'bar';
+		$finalArray['graph']['total'] = true ;
 	
 		curl_setopt ( $ch , CURLOPT_URL , $baseSabServer . 'api?apikey=' . $sabnzbd['apikey'] . '&mode=queue&output=json' );
 		
@@ -30,24 +34,32 @@ switch ( $graph ) {
 		
 		curl_close ( $ch );
 		
-		foreach ( $queue['queue']['slots'] as $job ) {
-			$cats[] = $job['cat'];
-		}
-		
-		$finalCats = array_count_values ( $cats );
-		
-		foreach ( $finalCats as $category => $total ) {
+		if ( count ( $queue['queue']['slots'] ) == 0 ) {
 			$downloads[] = array (
-				'title' => $category ,
+				'title' => 'Downloads' ,
 				'datapoints' => array (
-					array ( 'title' => $category , 'value' => $total )
+					array (
+						'title' => '' ,
+						'value' => 0
+					)
 				)
 			);
+		} else {
+			foreach ( $queue['queue']['slots'] as $job ) {
+				$cats[] = $job['cat'];
+			}
+			
+			$finalCats = array_count_values ( $cats );
+			
+			foreach ( $finalCats as $category => $total ) {
+				$downloads[] = array (
+					'title' => $category ,
+					'datapoints' => array (
+						array ( 'title' => $category , 'value' => $total )
+					)
+				);
+			}
 		}
-		
-		$finalArray['graph']['title'] = 'Downloads by Category';
-		$finalArray['graph']['type'] = 'bar';
-		$finalArray['graph']['total'] = true ;
 		
 		$finalArray['graph']['datasequences'] = $downloads;
 
