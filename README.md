@@ -37,6 +37,7 @@ to edit your crontab.  Enter in
 This ensures that the database scraping script is run every 5 minutes.
 
 **Note** If you wish to change how often the script is run, feel free to change any of the values in the crontab.
+3. Finally, enter ```http://path/to/sabnzbd_graph?graph=download-speed``` in Status Board to get the graph.
 
 ## Page
 In its current form, the server info page is only designed for a panel 4 blocks wide and 4 blocks high.  I plan on making it more responsive, however, at the present time it should be good enough (it's not like it's not readable in its current form).
