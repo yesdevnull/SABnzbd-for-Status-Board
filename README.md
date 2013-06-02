@@ -43,6 +43,7 @@ The code for getting the page panel is ```http://example.com/path/to/file/sabnzb
 
 ## Requirements
 - PHP 5.x or greater
+
 ### PHP Modules/Extensions
 - PDO with SQLite
 - SQLite3
