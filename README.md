@@ -27,7 +27,7 @@ When entering the URI for the Status Board panel, enter ```http://example.com/pa
 This graph is the current download speed, along with the speedlimit (if set).  To get this working properly, you should have a decent knowledge of the command line as you __MUST HAVE__ correct permissions to make sure SQLite can work properly, along with setting up a cron task for data collection.
 
 1. Once you've cloned/downloaded these files, add your config file then run
-```chmod 775 .```
+```chmod -R 775 .```
 to make sure the folder is writeable.  If you get SQLite errors after the ```sabnzbd_history.db``` database has been generated, you may have to run ```chmod 775 sabnzbd_history.db```.
 2. After you've done that, type
 ```crontab -e```
@@ -39,10 +39,11 @@ This ensures that the database scraping script is run every 5 minutes.
 ## Page
 In its current form, the server info page is only designed for a panel 4 blocks wide and 4 blocks high.  I plan on making it more responsive, however, at the present time it should be good enough (it's not like it's not readable in its current form).
 
-The code for getting the page panel is ```http://path/to/file/sabnzbd_page.html```
+The code for getting the page panel is ```http://example.com/path/to/file/sabnzbd_page.html```
 
 ## Requirements
 - PHP 5.x or greater
+### PHP Modules/Extensions
 - PDO with SQLite
 - SQLite3
 - curl
