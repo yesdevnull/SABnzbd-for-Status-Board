@@ -40,16 +40,18 @@ if ( curl_errno ( $ch ) == 7 ) {
 		'version' => 'Offline'
 	);
 } else {
-	$currentSpeed = formatSizeUnits ( $output['queue']['kbpersec'] * 1024 ) . '/s';
+	$currentSpeed = formatSizeUnits ( $output['queue']['kbpersec'] * 1024 , 1 ) . '/s';
 	$status = $output['queue']['status'];
 	$sizeleft = $output['queue']['sizeleft'];
+	$totalsize = $output['queue']['size'];
 	$version = $output['queue']['version'];
 	
 	$finalArray = array (
 		'current-speed' => $currentSpeed ,
 		'status' => $status ,
 		'sizeleft' => $sizeleft ,
-		'version' => $version
+		'totalsize' => $totalsize ,
+		'version' => $version ,
 	);
 }
 

@@ -51,7 +51,8 @@
 					color: inherit;
 				}
 				
-				p {
+				p ,
+				.gray {
 					color: rgb( 85 , 85 , 85 );
 				}
 				
@@ -78,6 +79,10 @@
 				#title.status-offline {
 					color: rgb( 255 , 48 , 0 );
 				}
+				
+				.nowrap > h1 {
+					display: inline;
+				}
 			
 			</style>
 			
@@ -101,6 +106,7 @@
 			    				document.getElementById('title').className = '';
 		    				}
 		    				document.getElementById('sizeleft').innerText = json['sizeleft'];
+		    				document.getElementById('totalsize').innerText = json['totalsize'];
 		    				document.getElementById('version').innerText = json['version'];
 						}
 					}
@@ -130,7 +136,7 @@
 					
 					<li><p>status</p><h1 id="status">Idle</h1></li>
 					
-					<li><h1 id="sizeleft">0 GB</h1><p>left to download</p></li>
+					<li><p>queue</p><span class="nowrap"><h1 id="sizeleft">0 GB</h1> <h1 class="gray">/</h1> <h1 id="totalsize">0 GB</h1></span></li>
 				
 				</ul>
 			
