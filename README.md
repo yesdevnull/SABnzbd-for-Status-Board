@@ -51,3 +51,7 @@ The code for getting the page panel is ```http://example.com/path/to/file/sabnzb
 
 ## TODO
 - Add support for username/password auth for SABnzbd+
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/yesdevnull/sabnzbd-for-status-board/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
