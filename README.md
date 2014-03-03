@@ -1,4 +1,5 @@
-# SABnzbd+ for Status Board
+# SABnzbd+ for Status Board [![Project Status](http://stillmaintained.com/yesdevnull/SABnzbd-for-Status-Board.png)](http://stillmaintained.com/yesdevnull/SABnzbd-for-Status-Board)
+
 This is a collection of graphs and info panels for your SABNzbd+ server that can be displayed in [Status Board](http://panic.com/statusboard/).
 
 ## Usage
