@@ -105,8 +105,9 @@
 		    				} else {
 			    				document.getElementById('title').className = '';
 		    				}
-		    				document.getElementById('sizeleft').innerText = json['sizeleft'];
-		    				document.getElementById('totalsize').innerText = json['totalsize'];
+		    				//document.getElementById('sizeleft').innerText = json['sizeleft'];
+		    				//document.getElementById('totalsize').innerText = json['totalsize'];
+		    				document.getElementById('remaining').innerText = json['remaining'];
 		    				document.getElementById('version').innerText = json['version'];
 						}
 					}
@@ -136,7 +137,9 @@
 					
 					<li><p>status</p><h1 id="status">Idle</h1></li>
 					
-					<li><p>queue</p><span class="nowrap"><h1 id="sizeleft">0 GB</h1> <h1 class="gray">/</h1> <h1 id="totalsize">0 GB</h1></span></li>
+					<!--<li><p>queue</p><span class="nowrap"><h1 id="sizeleft">0 GB</h1> <h1 class="gray">/</h1> <h1 id="totalsize">0 GB</h1></span></li>-->
+					
+					<li><p>remaining</p><h1 id="remaining">0:00:00</h1></li>
 				
 				</ul>
 			

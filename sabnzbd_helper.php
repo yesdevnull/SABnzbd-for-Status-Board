@@ -42,15 +42,17 @@ if ( curl_errno ( $ch ) == 7 ) {
 } else {
 	$currentSpeed = formatSizeUnits ( $output['queue']['kbpersec'] * 1024 , 1 ) . '/s';
 	$status = $output['queue']['status'];
-	$sizeleft = $output['queue']['sizeleft'];
-	$totalsize = $output['queue']['size'];
+	//$sizeleft = $output['queue']['sizeleft'];
+	//$totalsize = $output['queue']['size'];
+	$remaining = $output['queue']['timeleft'];
 	$version = $output['queue']['version'];
 	
 	$finalArray = array (
 		'current-speed' => $currentSpeed ,
 		'status' => $status ,
-		'sizeleft' => $sizeleft ,
-		'totalsize' => $totalsize ,
+		//'sizeleft' => $sizeleft ,
+		//'totalsize' => $totalsize ,
+		'remaining' => $remaining,
 		'version' => $version ,
 	);
 }
