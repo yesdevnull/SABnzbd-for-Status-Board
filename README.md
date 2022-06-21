@@ -1,6 +1,8 @@
-# SABnzbd+ for Status Board [![Project Status](http://stillmaintained.com/yesdevnull/SABnzbd-for-Status-Board.png)](http://stillmaintained.com/yesdevnull/SABnzbd-for-Status-Board)
+# SABnzbd+ for Status Board
 
 This is a collection of graphs and info panels for your SABNzbd+ server that can be displayed in [Status Board](http://panic.com/statusboard/).
+
+**Note:** this is not maintained and has been archived.
 
 ## Usage
 There are two major components to this Status Board script.  The first section is a graph of current downloads sorted by category.  The second component is basic details of SABnzbd+ at the current point in time (i.e. download speed, GBs remaining to download).
